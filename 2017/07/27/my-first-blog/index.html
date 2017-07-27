@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Git 的工作就是创建和保存你项目的快照及与之后的快照进行对比。本章将对有关创建与提交你的项目快照的命令作介绍。获取与创建项目命令git init用 git init 在目录中创建新的 Git 仓库。 你可以在任何时候、任何目录中这么做，完全是本地化的。在目录中执行 git init，就可以创建一个 Git 仓库了。比如我们创建 runoob 项目：$ mkdir runoob$ cd runoo">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 基本操作">
+<meta property="og:url" content="http://wilfulSChou.github.io/2017/07/27/my-first-blog/index.html">
+<meta property="og:site_name" content="wilfulSChou&#39;s FIRST BLOG">
+<meta property="og:description" content="Git 的工作就是创建和保存你项目的快照及与之后的快照进行对比。本章将对有关创建与提交你的项目快照的命令作介绍。获取与创建项目命令git init用 git init 在目录中创建新的 Git 仓库。 你可以在任何时候、任何目录中这么做，完全是本地化的。在目录中执行 git init，就可以创建一个 Git 仓库了。比如我们创建 runoob 项目：$ mkdir runoob$ cd runoo">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-07-27T08:11:54.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 基本操作">
+<meta name="twitter:description" content="Git 的工作就是创建和保存你项目的快照及与之后的快照进行对比。本章将对有关创建与提交你的项目快照的命令作介绍。获取与创建项目命令git init用 git init 在目录中创建新的 Git 仓库。 你可以在任何时候、任何目录中这么做，完全是本地化的。在目录中执行 git init，就可以创建一个 Git 仓库了。比如我们创建 runoob 项目：$ mkdir runoob$ cd runoo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wilfulSChou.github.io/2017/07/27/my-first-blog/"/>
+
+
+
+
+
+  <title>Git 基本操作 | wilfulSChou's FIRST BLOG</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wilfulSChou's FIRST BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录在学习过程中遇到的各种坑</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wilfulSChou.github.io/2017/07/27/my-first-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wilful">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wilfulSChou's FIRST BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git 基本操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T15:47:36+08:00">
+                2017-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Git 的工作就是创建和保存你项目的快照及与之后的快照进行对比。本章将对有关创建与提交你的项目快照的命令作介绍。<br>获取与创建项目命令<br>git init<br>用 git init 在目录中创建新的 Git 仓库。 你可以在任何时候、任何目录中这么做，完全是本地化的。<br>在目录中执行 git init，就可以创建一个 Git 仓库了。比如我们创建 runoob 项目：<br>$ mkdir runoob<br>$ cd runoob/<br>$ git init<br>Initialized empty Git repository in /Users/tianqixin/www/runoob/.git/</p>
+<h1 id="在-www-runoob-git-目录初始化空-Git-仓库完毕。"><a href="#在-www-runoob-git-目录初始化空-Git-仓库完毕。" class="headerlink" title="在 /www/runoob/.git/ 目录初始化空 Git 仓库完毕。"></a>在 /www/runoob/.git/ 目录初始化空 Git 仓库完毕。</h1><p>现在你可以看到在你的项目中生成了 .git 这个子目录。 这就是你的 Git 仓库了，所有有关你的此项目的快照数据都存放在这里。<br><a id="more"></a><br>ls -a<br>.    ..    .git<br>git clone<br>使用 git clone 拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。<br>如果你需要与他人合作一个项目，或者想要复制一个项目，看看代码，你就可以克隆那个项目。 执行命令：<br> git clone [url]<br>[url] 为你想要复制的项目，就可以了。<br>例如我们克隆 Github 上的项目：<br>$ git clone git@github.com:schacon/simplegit.git<br>Cloning into ‘simplegit’…<br>remote: Counting objects: 13, done.<br>remote: Total 13 (delta 0), reused 0 (delta 0), pack-reused 13<br>Receiving objects: 100% (13/13), done.<br>Resolving deltas: 100% (2/2), done.<br>Checking connectivity… done.<br>克隆完成后，在当前目录下会生成一个 simplegit 目录：<br>$ cd simplegit/ $ ls README Rakefile lib<br>上述操作将复制该项目的全部记录。<br>$ ls -a<br>.        ..       .git     README   Rakefile lib<br>$ cd .git<br>$ ls<br>HEAD        description info        packed-refs<br>branches    hooks       logs        refs<br>config      index       objects<br>默认情况下，Git 会按照你提供的 URL 所指示的项目的名称创建你的本地项目目录。 通常就是该 URL 最后一个 / 之后的项目名称。如果你想要一个不一样的名字， 你可以在该命令后加上你想要的名称。<br>基本快照<br>Git 的工作就是创建和保存你的项目的快照及与之后的快照进行对比。本章将对有关创建与提交你的项目的快照的命令作介绍。<br>git add<br>git add 命令可将该文件添加到缓存，如我们添加以下两个文件：<br>$ touch README<br>$ touch hello.php<br>$ ls<br>README        hello.php<br>$ git status -s<br>?? README<br>?? hello.php<br>$<br>git status 命令用于查看项目的当前状态。<br>接下来我们执行 git add 命令来添加文件：<br>$ git add README hello.php<br>现在我们再执行 git status，就可以看到这两个文件已经加上去了。<br>$ git status -s<br>A  README<br>A  hello.php<br>$<br>新项目中，添加所有文件很普遍，我们可以使用 git add . 命令来添加当前项目的所有文件。<br>现在我们修改 README 文件：<br>$ vim README<br>在 README 添加以下内容：# Runoob Git 测试，然后保存退出。<br>再执行一下 git status：<br>$ git status -s<br>AM README<br>A  hello.php<br>“AM” 状态的意思是，这个文件在我们将它添加到缓存之后又有改动。改动后我们在执行 git add 命令将其添加到缓存中：<br>$ git add .<br>$ git status -s<br>A  README<br>A  hello.php<br>当你要将你的修改包含在即将提交的快照里的时候，需要执行 git add。<br>git status<br>git status 以查看在你上次提交之后是否有修改。<br>我演示该命令的时候加了 -s 参数，以获得简短的结果输出。如果没加该参数会详细输出内容：<br>$ git status<br>On branch master</p>
+<p>Initial commit</p>
+<p>Changes to be committed:<br>  (use “git rm –cached <file>…” to unstage)</file></p>
+<pre><code>new file:   README
+new file:   hello.php
+</code></pre><p>git diff<br>执行 git diff 来查看执行 git status 的结果的详细信息。<br>git diff 命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。git diff 有两个主要的应用场景。<br>尚未缓存的改动：git diff<br>查看已缓存的改动： git diff –cached<br>查看已缓存的与未缓存的所有改动：git diff HEAD<br>显示摘要而非整个 diff：git diff –stat<br>在 hello.php 文件中输入以下内容：<br>&lt;?php<br>echo ‘菜鸟教程：www.runoob.com’;<br>?&gt;<br>$ git status -s<br>A  README<br>AM hello.php<br>$ git diff<br>diff –git a/hello.php b/hello.php<br>index e69de29..69b5711 100644<br>— a/hello.php<br>+++ b/hello.php<br>@@ -0,0 +1,3 @@<br>+&lt;?php<br>+echo ‘菜鸟教程：www.runoob.com’;<br>+?&gt;<br>git status 显示你上次提交更新后的更改或者写入缓存的改动， 而 git diff 一行一行地显示这些改动具体是啥。<br>接下来我们来查看下 git diff –cached 的执行效果：<br>$ git add hello.php<br>$ git status -s<br>A  README<br>A  hello.php<br>$ git diff –cached<br>diff –git a/README b/README<br>new file mode 100644<br>index 0000000..8f87495<br>— /dev/null<br>+++ b/README<br>@@ -0,0 +1 @@<br>+# Runoob Git 测试<br>diff –git a/hello.php b/hello.php<br>new file mode 100644<br>index 0000000..69b5711<br>— /dev/null<br>+++ b/hello.php<br>@@ -0,0 +1,3 @@<br>+&lt;?php<br>+echo ‘菜鸟教程：www.runoob.com’;<br>+?&gt;<br>git commit<br>使用 git add 命令将想要快照的内容写入缓存区， 而执行 git commit 将缓存区内容添加到仓库中。<br>Git 为你的每一个提交都记录你的名字与电子邮箱地址，所以第一步需要配置用户名和邮箱地址。<br>$ git config –global user.name ‘runoob’<br>$ git config –global user.email test@runoob.com<br>接下来我们写入缓存，并提交对 hello.php 的所有改动。在首个例子中，我们使用 -m 选项以在命令行中提供提交注释。<br>$ git add hello.php<br>$ git status -s<br>A  README<br>A  hello.php<br>$ $ git commit -m ‘第一次版本提交’<br>[master (root-commit) d32cf1f] 第一次版本提交<br> 2 files changed, 4 insertions(+)<br> create mode 100644 README<br> create mode 100644 hello.php</p>
+<p>现在我们已经记录了快照。如果我们再执行 git status:<br>$ git status</p>
+<h1 id="On-branch-master"><a href="#On-branch-master" class="headerlink" title="On branch master"></a>On branch master</h1><p>nothing to commit (working directory clean)<br>以上输出说明我们在最近一次提交之后，没有做任何改动，是一个”working directory clean：干净的工作目录”。<br>如果你没有设置 -m 选项，Git 会尝试为你打开一个编辑器以填写提交信息。 如果 Git 在你对它的配置中找不到相关信息，默认会打开 vim。屏幕会像这样：</p>
+<h1 id="Please-enter-the-commit-message-for-your-changes-Lines-starting"><a href="#Please-enter-the-commit-message-for-your-changes-Lines-starting" class="headerlink" title="Please enter the commit message for your changes. Lines starting"></a>Please enter the commit message for your changes. Lines starting</h1><h1 id="with-‘-’-will-be-ignored-and-an-empty-message-aborts-the-commit"><a href="#with-‘-’-will-be-ignored-and-an-empty-message-aborts-the-commit" class="headerlink" title="with ‘#’ will be ignored, and an empty message aborts the commit."></a>with ‘#’ will be ignored, and an empty message aborts the commit.</h1><h1 id="On-branch-master-1"><a href="#On-branch-master-1" class="headerlink" title="On branch master"></a>On branch master</h1><h1 id="Changes-to-be-committed"><a href="#Changes-to-be-committed" class="headerlink" title="Changes to be committed:"></a>Changes to be committed:</h1><h1 id="use-“git-reset-HEAD-…”-to-unstage"><a href="#use-“git-reset-HEAD-…”-to-unstage" class="headerlink" title="(use “git reset HEAD …” to unstage)"></a>(use “git reset HEAD <file>…” to unstage)</file></h1><p>#</p>
+<h1 id="modified-hello-php"><a href="#modified-hello-php" class="headerlink" title="modified:   hello.php"></a>modified:   hello.php</h1><p>#<br>~<br>~<br>“.git/COMMIT_EDITMSG” 9L, 257C<br>如果你觉得 git add 提交缓存的流程太过繁琐，Git 也允许你用 -a 选项跳过这一步。命令格式如下：<br>git commit -a<br>我们先修改 hello.php 文件为以下内容：<br>&lt;?php<br>echo ‘菜鸟教程：www.runoob.com’;<br>echo ‘菜鸟教程：www.runoob.com’;<br>?&gt;<br>再执行以下命令：<br>git commit -am ‘修改 hello.php 文件’<br>[master 71ee2cb] 修改 hello.php 文件<br> 1 file changed, 1 insertion(+)<br>git reset HEAD<br>git reset HEAD 命令用于取消已缓存的内容。<br>我们先改动文件 README 文件，内容如下：</p>
+<h1 id="Runoob-Git-测试"><a href="#Runoob-Git-测试" class="headerlink" title="Runoob Git 测试"></a>Runoob Git 测试</h1><h1 id="菜鸟教程"><a href="#菜鸟教程" class="headerlink" title="菜鸟教程"></a>菜鸟教程</h1><p>hello.php 文件修改为：<br>&lt;?php<br>echo ‘菜鸟教程：www.runoob.com’;<br>echo ‘菜鸟教程：www.runoob.com’;<br>echo ‘菜鸟教程：www.runoob.com’;<br>?&gt;<br>现在两个文件修改后，都提交到了缓存区，我们现在要取消其中一个的缓存，操作如下：<br>$ git status -s<br> M README<br> M hello.php<br>$ git add .<br>$ git status -s<br>M  README<br>M  hello.pp<br>$ git reset HEAD – hello.php<br>Unstaged changes after reset:<br>M    hello.php<br>$ git status -s<br>M  README<br> M hello.php<br>现在你执行 git commit，只会将 README 文件的改动提交，而 hello.php 是没有的。<br>$ git commit -m ‘修改’<br>[master f50cfda] 修改<br> 1 file changed, 1 insertion(+)<br>$ git status -s<br> M hello.php<br>可以看到 hello.php 文件的修改并为提交。<br>这时我们可以使用以下命令将 hello.php 的修改提交：<br>$ git commit -am ‘修改 hello.php 文件’<br>[master 760f74d] 修改 hello.php 文件<br> 1 file changed, 1 insertion(+)<br>$ git status<br>On branch master<br>nothing to commit, working directory clean<br>简而言之，执行 git reset HEAD 以取消之前 git add 添加，但不希望包含在下一提交快照中的缓存。<br>git rm<br>git rm 会将条目从缓存区中移除。这与 git reset HEAD 将条目取消缓存是有区别的。 “取消缓存”的意思就是将缓存区恢复为我们做出修改之前的样子。<br>默认情况下，git rm file 会将文件从缓存区和你的硬盘中（工作目录）删除。<br>如果你要在工作目录中留着该文件，可以使用 git rm –cached：<br>如我们删除 hello.php文件：<br>$ git rm hello.php<br>rm ‘hello.php’<br>$ ls<br>README<br>不从工作区中删除文件：<br>$ git rm –cached README<br>rm ‘README’<br>$ ls<br>README<br>git mv<br>git mv 命令用于移动或重命名一个文件、目录、软连接。<br>我们先把刚移除的 README 添加回来：<br>$ git add README<br>然后对其重名:<br>$ git mv README  README.md<br>$ ls<br>README.md</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/27/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wilful" />
+          <p class="site-author-name" itemprop="name">wilful</p>
+           
+              <p class="site-description motion-element" itemprop="description">这是我的第一个个人博客呀~</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在-www-runoob-git-目录初始化空-Git-仓库完毕。"><span class="nav-number">1.</span> <span class="nav-text">在 /www/runoob/.git/ 目录初始化空 Git 仓库完毕。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#On-branch-master"><span class="nav-number">2.</span> <span class="nav-text">On branch master</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Please-enter-the-commit-message-for-your-changes-Lines-starting"><span class="nav-number">3.</span> <span class="nav-text">Please enter the commit message for your changes. Lines starting</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#with-‘-’-will-be-ignored-and-an-empty-message-aborts-the-commit"><span class="nav-number">4.</span> <span class="nav-text">with ‘#’ will be ignored, and an empty message aborts the commit.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#On-branch-master-1"><span class="nav-number">5.</span> <span class="nav-text">On branch master</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Changes-to-be-committed"><span class="nav-number">6.</span> <span class="nav-text">Changes to be committed:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#use-“git-reset-HEAD-…”-to-unstage"><span class="nav-number">7.</span> <span class="nav-text">(use “git reset HEAD …” to unstage)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#modified-hello-php"><span class="nav-number">8.</span> <span class="nav-text">modified:   hello.php</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Runoob-Git-测试"><span class="nav-number">9.</span> <span class="nav-text">Runoob Git 测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#菜鸟教程"><span class="nav-number">10.</span> <span class="nav-text">菜鸟教程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wilful</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
